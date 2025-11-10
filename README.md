@@ -1,4 +1,4 @@
-# EmBomber [![python](https://img.shields.io/badge/Python-2.7-green.svg?style=style=flat-square)](https://www.python.org/downloads/) ![version](https://img.shields.io/badge/Build-Final-blue.svg) ![license](https://img.shields.io/badge/License-GPL_3-orange.svg?style=style=flat-square)
+# EmBomber [![python](https://img.shields.io/badge/Python-3.10-green.svg?style=style=flat-square)](https://www.python.org/downloads/) ![version](https://img.shields.io/badge/Build-Final-blue.svg) ![license](https://img.shields.io/badge/License-GPL_3-orange.svg?style=style=flat-square)
 
 Python Script for Email Bombing which supports Gmail, Yahoo, Hotmail/Outlook
 

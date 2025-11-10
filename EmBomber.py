@@ -17,6 +17,44 @@ def raw_input(prompt):
     return input(prompt)
 
 
+def help_message(server_no):
+    if server_no == 1:
+        print(
+            bcolors.WARNING
+            + "\n[!] For Gmail, you need to use an App Password:"
+            + bcolors.ENDC
+        )
+        print("    1. Go to https://myaccount.google.com/apppasswords")
+        print("    2. Generate an App Password for 'Mail'")
+        print("    3. Use that 16-character password instead of your regular password")
+    elif server_no == 2:
+        print(
+            bcolors.WARNING
+            + "\n[!] For Yahoo, you need to generate an App Password:"
+            + bcolors.ENDC
+        )
+        print("    1. Go to https://login.yahoo.com/account/security")
+        print("    2. Generate an app password")
+        print("    3. Use that password instead of your regular password")
+    else:
+        print(
+            bcolors.FAIL
+            + "\n[!] OUTLOOK/HOTMAIL NO LONGER SUPPORTS BASIC SMTP AUTHENTICATION!"
+            + bcolors.ENDC
+        )
+        print(
+            bcolors.WARNING
+            + "\n    Microsoft has completely disabled SMTP for personal accounts."
+            + bcolors.ENDC
+        )
+        print("    This cannot be fixed with app passwords or any workaround.")
+        print("    \n    SOLUTION: Please use Gmail or Yahoo instead:")
+        print("    - Gmail: Works perfectly with app passwords")
+        print("    - Yahoo: Also supports app passwords")
+        print("\n    If you must use Outlook, you'll need to use Microsoft Graph API")
+        print("    (which requires OAuth2 and is much more complex).")
+
+
 def bomb():
     os.system("clear")
     print(
@@ -89,7 +127,8 @@ def send_email(server_no, user, pwd, to, subject, body, nomes):
             + "[-] Authentication Error. Check your email and password."
             + bcolors.ENDC
         )
-        raise e
+        help_message(int(server_no))
+        # raise e
     except Exception as e:
         print(bcolors.FAIL + "[-] An error occurred: " + str(e) + bcolors.ENDC)
         # raise e
@@ -120,6 +159,33 @@ def main():
 
     try:
         server = raw_input(bcolors.OKGREEN + "Mail Server: " + bcolors.ENDC)
+
+        # Warn user if they select Outlook
+        if server == "3":
+            print(
+                bcolors.FAIL
+                + "\n[!] WARNING: Outlook/Hotmail is NOT supported!"
+                + bcolors.ENDC
+            )
+            print(
+                bcolors.WARNING
+                + "    Microsoft has disabled basic SMTP authentication for personal accounts."
+                + bcolors.ENDC
+            )
+            print("    This will NOT work even with app passwords.\n")
+            proceed = raw_input(
+                bcolors.WARNING
+                + "    Do you want to continue anyway? (yes/no): "
+                + bcolors.ENDC
+            )
+            if proceed.lower() not in ["yes", "y"]:
+                print(
+                    bcolors.OKGREEN
+                    + "\n[+] Please use Gmail (1) or Yahoo (2) instead."
+                    + bcolors.ENDC
+                )
+                sys.exit()
+
         user = raw_input(bcolors.OKGREEN + "Your Email: " + bcolors.ENDC)
         pwd = getpass.getpass(bcolors.OKGREEN + "Password: " + bcolors.ENDC)
         to = raw_input(bcolors.OKGREEN + "To: " + bcolors.ENDC)

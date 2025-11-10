@@ -7,9 +7,9 @@ Python Script for Email Bombing which supports Gmail, Yahoo, Hotmail/Outlook
 Made with ![heart](https://cloud.githubusercontent.com/assets/4301109/16754758/82e3a63c-4813-11e6-9430-6015d98aeaab.png) by <a href=https://twitter.com/MazenElzanaty>Mazen Elzanaty</a>
 
 ## Features
-- Support Gmail
+- Support Gmail (Create an app password for Gmail)
 - Support Yahoo
-- Support Hotmail/Outlook
+- Support Hotmail/Outlook (Create an app password for Hotmail/Outlook)
 
 ## Usage
 EmBomber should work on all Linux distros running Python 2.7
